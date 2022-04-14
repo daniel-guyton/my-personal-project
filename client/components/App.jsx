@@ -7,7 +7,7 @@ import getProducts from '../api/index'
 const App = () => {
   const [products, setProducts] = useState([])
 
-  React.useEffect(() => {
+  useEffect(() => {
     getProducts()
       .then((product) => {
         return setProducts(product)
