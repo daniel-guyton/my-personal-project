@@ -1,37 +1,31 @@
 import React, { useState, useEffect } from 'react'
-import { getGreeting } from '../apiClient'
+import { Routes, Route } from 'react-router-dom'
+import Checkout from './Checkout'
+import Home from './Home'
+import getProducts from '../api/index'
 
 const App = () => {
-  const [greeting, setGreeting] = useState('')
-  const [count, setCount] = useState(0)
-  const [isError, setIsError] = useState(false)
+  const [products, setProducts] = useState([])
 
-  useEffect(() => {
-    getGreeting()
-      .then((greeting) => {
-        console.log(greeting)
-        setGreeting(greeting)
-        setIsError(false)
-        return null
+  React.useEffect(() => {
+    getProducts()
+      .then((product) => {
+        return setProducts(product)
       })
       .catch((err) => {
-        console.log(err)
-        setIsError(true)
+        console.error(err)
       })
-  }, [count])
+  }, [])
 
   return (
     <>
-      {count}
-      <h1>{greeting}</h1>
-      {isError && (
-        <p style={{ color: 'red' }}>
-          There was an error retrieving the greeting.
-        </p>
-      )}
-      <button onClick={() => setCount(count + 1)}>Click</button>
+      <div className="wrapper">
+        <Routes>
+          <Route path="/" element={<Home products={products} />}></Route>
+          <Route path="/checkout" element={<Checkout />}></Route>
+        </Routes>
+      </div>
     </>
   )
 }
-
 export default App
