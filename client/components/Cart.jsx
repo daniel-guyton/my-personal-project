@@ -51,9 +51,7 @@ export default function Cart() {
           <img className="cart-images" src={item.img}></img>
           <div className="item-content">
             <h4>{item.name}</h4>
-            <p>
-              Price: {`$${twoDecimalPlaces(item.price * item.quantity)}`} NZD
-            </p>
+            <p>Price: {`$${twoDecimalPlaces(item.price * item.quantity)}`}</p>
             <div className="quantity-box">
               <p>Quantity:</p>
               <div className="quantity">
@@ -73,7 +71,7 @@ export default function Cart() {
         </div>
       ))}
       <div className="total-button">
-        <h4>Total: {`$${twoDecimalPlaces(cart.totalPrice)}`}</h4>
+        <h4>Total: {`$${twoDecimalPlaces(cart.totalPrice)} NZD`}</h4>
         <button className="proceed">Proceed to checkout</button>
         <button className="continue" onClick={handleNavigate}>
           Continue Shopping
