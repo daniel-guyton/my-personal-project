@@ -13,12 +13,12 @@ const Home = () => {
       <div className="alpha">
         <img src="https://melmagazine.com/wp-content/uploads/2021/01/Gigachad.jpg"></img>
         <div className="alpha-content">
-          <h2 className="chad-clothing">Chad Clothing</h2>
+          <h1 className="chad-clothing">What is chad clothing?</h1>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque,
             assumenda delectus. Numquam, tempora? Tempore deserunt plac eat,
             consequatur iusto eaque maxime suscipit alias quisquam cupiditate
-            reprehenderit at libero, asperiores, modi eveniet?'
+            reprehenderit at libero, asperiores, modi eveniet?
           </p>
           <button className="start-shopping" onClick={() => handleNavigate()}>
             Start Shopping

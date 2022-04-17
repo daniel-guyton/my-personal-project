@@ -1,7 +1,7 @@
 export const getTotalPricesAndItems = (cartItems) => ({
   totalPrice: cartItems.reduce(
     (totalPrice, updatedCartItem) =>
-      //price calculated based on the price of the item multiplied by the quantity
+      //total price calculated based on the price of the item multiplied by the quantity of items
       //and then added to acc
       totalPrice + updatedCartItem.price * updatedCartItem.quantity,
     0

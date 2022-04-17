@@ -83,8 +83,20 @@ a {
 }
 
 .productdetails {
-  padding-left: 10px;
   margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.productdetails > p,
+h2 {
+  font-size: 15px;
+  text-align: left;
+  padding-left: 15px;
+  margin: 0;
+}
+.productdetails > p {
+  font-size: 13px;
 }
 .product {
   margin: 15px 15px 0px 15px;

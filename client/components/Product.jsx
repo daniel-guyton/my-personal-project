@@ -9,7 +9,7 @@ export default function Product(props) {
       <div key={id}>
         <img src={img} className="product"></img>
         <div className="productdetails">
-          <p>{name}</p>
+          <h2>{name}</h2>
           <p>{`$${twoDecimalPlaces(price)} NZD`}</p>
         </div>
         <button
