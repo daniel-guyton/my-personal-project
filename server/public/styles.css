@@ -69,7 +69,7 @@ a {
   height: 215px;
 }
 
-button {
+.additem {
   padding: 9px 30px 9px 30px;
   border: 2px solid #77a2f9;
   border-radius: 9px;
@@ -80,7 +80,7 @@ button {
   -webkit-transition-duration: 0.4s;
 }
 
-button:hover {
+.additem:hover {
   background-color: white;
   color: #707070;
 }
@@ -220,4 +220,33 @@ input[type='number']::-webkit-outer-spin-button {
 .quantity-box {
   display: flex;
   align-items: center;
+}
+
+.remove-item {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.remove-item > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  background-color: #77a2f9;
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  border: none;
+  transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+}
+
+.remove-item > button:hover {
+  cursor: pointer;
+  background-color: #a0bef9;
+  color: white;
 }

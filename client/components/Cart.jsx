@@ -2,6 +2,21 @@ import React from 'react'
 import { useCart } from '../context/cart.context'
 import Header from './Header'
 
+const getTotalPricesAndItems = (cartItems) => ({
+  totalPrice: cartItems.reduce(
+    (totalPrice, updatedCartItem) =>
+      //price calculated based on the price of the item multiplied by the quantity
+      //and then added to acc
+      totalPrice + updatedCartItem.price * updatedCartItem.quantity,
+    0
+  ),
+  totalItems: cartItems.reduce(
+    // add quanity of all items to acc
+    (total, updatedCartItem) => total + updatedCartItem.quantity,
+    0
+  ),
+})
+
 export default function Cart() {
   const cartItems = useCart()
   const { cart, setCart } = cartItems
@@ -18,17 +33,23 @@ export default function Cart() {
       return {
         ...prevNewCartData,
         items: updatedItems,
-        totalPrice: updatedItems.reduce(
-          (totalPrice, updatedCartItem) =>
-            totalPrice + updatedCartItem.price * updatedCartItem.quantity,
-          0
-        ),
-        totalItems: updatedItems.reduce(
-          (total, updatedCartItem) => total + updatedCartItem.quantity,
-          0
-        ),
+        ...getTotalPricesAndItems(updatedItems),
       }
     })
+  }
+
+  const handleDelete = (itemId) => {
+    const cartItems = [...cart.items]
+    //findIndex of the item you clicked
+    const indexOfCartItemToBeRemoved = cartItems.findIndex(
+      (cartItem) => cartItem.id === itemId
+    )
+    //if index doesnt exist exit
+    if (indexOfCartItemToBeRemoved < 0) return
+    //remove item at index
+    cartItems.splice(indexOfCartItemToBeRemoved, 1)
+    //setcart to updated cartItems and change total price based on cart items
+    setCart({ items: cartItems, ...getTotalPricesAndItems(cartItems) })
   }
 
   return (
@@ -54,11 +75,14 @@ export default function Cart() {
               </div>
             </div>
           </div>
+          <div className="remove-item">
+            <button onClick={() => handleDelete(item.id)}>X</button>
+          </div>
         </div>
       ))}
       <div className="total-button">
         <h4>Total: {`$${cart.totalPrice}`}</h4>
-        <button>Proceed to checkout</button>
+        <button className="additem">Proceed to checkout</button>
       </div>
     </>
   )
