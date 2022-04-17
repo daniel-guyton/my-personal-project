@@ -38,7 +38,7 @@ exports.seed = (knex) => {
         {
           id: 6,
           img: 'https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png',
-          name: 'Rocket vintage chill ap',
+          name: 'Rocket vintage chill cap',
           price: 20.5,
         },
         {

@@ -1,5 +1,6 @@
 import React from 'react'
 import Product from './Product'
+import Header from './Header'
 import { useCart } from '../context/cart.context'
 import { getTotalPricesAndItems } from './helpers'
 export default function Products(props) {
@@ -28,13 +29,17 @@ export default function Products(props) {
 
   return (
     <>
-      {props.products.map((product) => (
-        <Product
-          key={product.id}
-          product={product}
-          handleAddItem={handleAddItem}
-        />
-      ))}
+      <Header />
+      <h1 className="shop">Shop</h1>
+      <div className="products">
+        {props.products.map((product) => (
+          <Product
+            key={product.id}
+            product={product}
+            handleAddItem={handleAddItem}
+          />
+        ))}
+      </div>
     </>
   )
 }

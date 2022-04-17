@@ -26,7 +26,7 @@ export default function Cart() {
     })
   }
 
-  const handleNavigate = () => navigate('/')
+  const handleNavigate = () => navigate('/shop')
 
   const handleDelete = (itemId) => {
     const cartItems = [...cart.items]
@@ -51,7 +51,9 @@ export default function Cart() {
           <img className="cart-images" src={item.img}></img>
           <div className="item-content">
             <h4>{item.name}</h4>
-            <p>Price: {`$${twoDecimalPlaces(item.price * item.quantity)}`}</p>
+            <p>
+              Price: {`$${twoDecimalPlaces(item.price * item.quantity)} NZD`}
+            </p>
             <div className="quantity-box">
               <p>Quantity:</p>
               <div className="quantity">
