@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Checkout from './Checkout'
+import Cart from './Cart'
 import Home from './Home'
 import getProducts from '../api/index'
+import { CartProvider } from '../context/cart.context'
 
 const App = () => {
   const [products, setProducts] = useState([])
@@ -18,14 +19,14 @@ const App = () => {
   }, [])
 
   return (
-    <>
+    <CartProvider>
       <div className="wrapper">
         <Routes>
           <Route path="/" element={<Home products={products} />}></Route>
-          <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/cart" element={<Cart />}></Route>
         </Routes>
       </div>
-    </>
+    </CartProvider>
   )
 }
 export default App
