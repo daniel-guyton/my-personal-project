@@ -1,23 +1,11 @@
 import React from 'react'
 import { useCart } from '../context/cart.context'
 import Header from './Header'
-
-const getTotalPricesAndItems = (cartItems) => ({
-  totalPrice: cartItems.reduce(
-    (totalPrice, updatedCartItem) =>
-      //price calculated based on the price of the item multiplied by the quantity
-      //and then added to acc
-      totalPrice + updatedCartItem.price * updatedCartItem.quantity,
-    0
-  ),
-  totalItems: cartItems.reduce(
-    // add quanity of all items to acc
-    (total, updatedCartItem) => total + updatedCartItem.quantity,
-    0
-  ),
-})
+import { getTotalPricesAndItems, twoDecimalPlaces } from './helpers'
+import { useNavigate } from 'react-router-dom'
 
 export default function Cart() {
+  const navigate = useNavigate()
   const cartItems = useCart()
   const { cart, setCart } = cartItems
   console.log(cart)
@@ -37,6 +25,8 @@ export default function Cart() {
       }
     })
   }
+
+  const handleNavigate = () => navigate('/')
 
   const handleDelete = (itemId) => {
     const cartItems = [...cart.items]
@@ -61,7 +51,9 @@ export default function Cart() {
           <img className="cart-images" src={item.img}></img>
           <div className="item-content">
             <h4>{item.name}</h4>
-            <p>Price: {`$${item.price * item.quantity}`} NZD</p>
+            <p>
+              Price: {`$${twoDecimalPlaces(item.price * item.quantity)}`} NZD
+            </p>
             <div className="quantity-box">
               <p>Quantity:</p>
               <div className="quantity">
@@ -81,8 +73,11 @@ export default function Cart() {
         </div>
       ))}
       <div className="total-button">
-        <h4>Total: {`$${cart.totalPrice}`}</h4>
-        <button className="additem">Proceed to checkout</button>
+        <h4>Total: {`$${twoDecimalPlaces(cart.totalPrice)}`}</h4>
+        <button className="proceed">Proceed to checkout</button>
+        <button className="continue" onClick={handleNavigate}>
+          Continue Shopping
+        </button>
       </div>
     </>
   )

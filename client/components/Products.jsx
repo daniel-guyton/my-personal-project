@@ -1,7 +1,7 @@
 import React from 'react'
 import Product from './Product'
 import { useCart } from '../context/cart.context'
-
+import { getTotalPricesAndItems } from './helpers'
 export default function Products(props) {
   const { setCart } = useCart()
 
@@ -15,13 +15,13 @@ export default function Products(props) {
         }
         return item
       })
+
       if (!updatedItems.some((item) => item.id === e.id)) {
         updatedItems.push({ ...e, quantity: 1 })
       }
       return {
         items: [...updatedItems],
-        totalPrice: prevNewCartData.totalPrice + e.price,
-        totalItems: prevNewCartData.totalItems + 1,
+        ...getTotalPricesAndItems(updatedItems),
       }
     })
   }

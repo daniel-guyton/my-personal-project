@@ -1,27 +1,31 @@
 import React from 'react'
 import { HiShoppingCart } from 'react-icons/hi'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/cart.context'
 const Header = () => {
+  const navigate = useNavigate()
   const { cart } = useCart()
+
+  const handleNavigate = () => navigate('/cart')
   return (
     <>
       <div className="navbar">
-        <h1>Shop</h1>
+        <img className="logo" src="/images/chadclothing.png"></img>
         <div>
           <ul className="nav-list">
             <li>
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="cart">
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <div onClick={handleNavigate} className="cart-icon">
                 <div>
-                  <div>
-                    <span className="cart-count">{cart.totalItems}</span>
-                  </div>
-                  <HiShoppingCart className="shop-icon" />
+                  <span className="cart-count">{cart.totalItems}</span>
                 </div>
-              </Link>
+                <HiShoppingCart className="shop-icon" />
+              </div>
             </li>
           </ul>
         </div>

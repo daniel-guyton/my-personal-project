@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
+import useSessionState from '../hooks/session.hook'
 
 const CartContext = React.createContext({})
 
 const CartProvider = (props) => {
-  const [cart, setCart] = useState({ items: [], totalPrice: 0, totalItems: 0 })
+  const [cart, setCart] = useSessionState('cart', {
+    items: [],
+    totalPrice: 0,
+    totalItems: 0,
+  })
 
   return <CartContext.Provider value={{ cart, setCart }} {...props} />
 }

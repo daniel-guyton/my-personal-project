@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Cart from './Cart'
 import Home from './Home'
+import About from './About'
 import getProducts from '../api/index'
 import { CartProvider } from '../context/cart.context'
 
@@ -23,6 +24,7 @@ const App = () => {
       <div className="wrapper">
         <Routes>
           <Route path="/" element={<Home products={products} />}></Route>
+          <Route path="/about" element={<About />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
         </Routes>
       </div>
