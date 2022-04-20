@@ -152,9 +152,10 @@ h2 {
   height: 1px;
   width: 1px;
   position: absolute;
-  background-color: #f33c2a;
+  background-color: #333;
   padding: 9px;
   border-radius: 50%;
+  outline: 2px solid white;
 }
 
 .item-content {
