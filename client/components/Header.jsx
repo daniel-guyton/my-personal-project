@@ -1,11 +1,11 @@
 import React from 'react'
 import { HiShoppingCart } from 'react-icons/hi'
 import { Link, useNavigate } from 'react-router-dom'
-import { useCart } from '../context/cart.context'
+import { useSelector } from 'react-redux'
 const Header = () => {
   const navigate = useNavigate()
-  const { cart } = useCart()
-
+  const cart = useSelector((state) => state.cart)
+  console.log(cart)
   const handleNavigate = () => navigate('/cart')
   return (
     <>

@@ -1,30 +1,14 @@
 import React from 'react'
 import Product from './Product'
 import Header from './Header'
-import { useCart } from '../context/cart.context'
-import { getTotalPricesAndItems } from './helpers'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../actions'
+
 export default function Products(props) {
-  const { setCart } = useCart()
+  const dispatch = useDispatch()
 
-  const handleAddItem = (e) => {
-    setCart((prevNewCartData) => {
-      const items = [...prevNewCartData.items]
-
-      const updatedItems = items.map((item) => {
-        if (item.id === e.id) {
-          item.quantity += 1
-        }
-        return item
-      })
-
-      if (!updatedItems.some((item) => item.id === e.id)) {
-        updatedItems.push({ ...e, quantity: 1 })
-      }
-      return {
-        items: [...updatedItems],
-        ...getTotalPricesAndItems(updatedItems),
-      }
-    })
+  const handleAddItem = (product) => {
+    dispatch(addToCart(product))
   }
 
   return (

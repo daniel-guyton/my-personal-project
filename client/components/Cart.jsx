@@ -1,45 +1,21 @@
 import React from 'react'
-import { useCart } from '../context/cart.context'
 import Header from './Header'
-import { getTotalPricesAndItems, twoDecimalPlaces } from './helpers'
+import { twoDecimalPlaces } from './helpers'
 import { useNavigate } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { updateCartQuantity, deleteCartItem } from '../actions'
 export default function Cart() {
   const navigate = useNavigate()
-  const cartItems = useCart()
-  const { cart, setCart } = cartItems
-  console.log(cart)
-
+  const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
   const handleChange = (itemId, quantity) => {
-    setCart((prevNewCartData) => {
-      const updatedItems = prevNewCartData.items.map((item) => {
-        if (item.id === itemId) {
-          item.quantity = parseInt(quantity)
-        }
-        return item
-      })
-      return {
-        ...prevNewCartData,
-        items: updatedItems,
-        ...getTotalPricesAndItems(updatedItems),
-      }
-    })
+    dispatch(updateCartQuantity(itemId, quantity))
   }
 
   const handleNavigate = () => navigate('/shop')
 
   const handleDelete = (itemId) => {
-    const cartItems = [...cart.items]
-    //findIndex of the item you clicked
-    const indexOfCartItemToBeRemoved = cartItems.findIndex(
-      (cartItem) => cartItem.id === itemId
-    )
-    //if index doesnt exist exit
-    if (indexOfCartItemToBeRemoved < 0) return
-    //remove item at index
-    cartItems.splice(indexOfCartItemToBeRemoved, 1)
-    //setcart to updated cartItems and change total price based on cart items
-    setCart({ items: cartItems, ...getTotalPricesAndItems(cartItems) })
+    dispatch(deleteCartItem(itemId))
   }
 
   return (

@@ -4,7 +4,6 @@ import Cart from './Cart'
 import Home from './Home'
 import About from './About'
 import getProducts from '../api/index'
-import { CartProvider } from '../context/cart.context'
 import Products from './Products'
 
 const App = () => {
@@ -21,19 +20,14 @@ const App = () => {
   }, [])
 
   return (
-    <CartProvider>
-      <div className="wrapper">
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/about" element={<About />}></Route>
-          <Route
-            path="/shop"
-            element={<Products products={products} />}
-          ></Route>
-          <Route path="/cart" element={<Cart />}></Route>
-        </Routes>
-      </div>
-    </CartProvider>
+    <div className="wrapper">
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/shop" element={<Products products={products} />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
+      </Routes>
+    </div>
   )
 }
 export default App
