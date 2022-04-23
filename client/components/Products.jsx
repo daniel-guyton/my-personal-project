@@ -3,13 +3,15 @@ import Product from './Product'
 import Header from './Header'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../actions'
+import { useNavigate } from 'react-router'
 
 export default function Products(props) {
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
   const handleAddItem = (product) => {
     dispatch(addToCart(product))
   }
+  const handleNavigate = () => navigate('/additem')
 
   return (
     <>
@@ -23,6 +25,11 @@ export default function Products(props) {
             handleAddItem={handleAddItem}
           />
         ))}
+      </div>
+      <div className="addproduct">
+        <button className="additem" onClick={handleNavigate}>
+          Add a product
+        </button>
       </div>
     </>
   )

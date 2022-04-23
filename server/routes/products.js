@@ -15,4 +15,13 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+  db.addProduct(req.body)
+    .then((product) => {
+      console.log(product)
+      res.json(product)
+    })
+    .catch((err) => console.log(err))
+})
+
 module.exports = router
